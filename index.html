@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brief de Edición — Videos Publicitarios</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #1a1a1a;
+    --border: #2a2a2a;
+    --white: #ffffff;
+    --gray1: #888888;
+    --gray2: #555555;
+    --accent: #ffffff;
+    --red: #e53935;
+    --red-bg: #1a0a0a;
+    --green: #2e7d52;
+    --green-bg: #0a1a0f;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 0 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 300px;
+    background: radial-gradient(ellipse, rgba(255,255,255,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .header-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gray1);
+    border: 1px solid var(--border);
+    padding: 6px 16px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+
+  .header h1 {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .header-sub {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray1);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .header-meta {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray2);
+  }
+
+  .meta-item span {
+    color: var(--white);
+    display: block;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  /* LAYOUT */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* SECTIONS */
+  .section {
+    border-bottom: 1px solid var(--border);
+    padding: 52px 0;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-number {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gray2);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+
+  .section-body {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray1);
+    line-height: 1.8;
+    max-width: 680px;
+  }
+
+  /* TWO COLUMN GRID */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px;
+  }
+
+  .card-num {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+
+  .card-title {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .card-body {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray1);
+    line-height: 1.7;
+  }
+
+  /* RULES LIST */
+  .rules-box {
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 24px;
+  }
+
+  .rules-box.green { border-color: #1e3a2a; }
+  .rules-box.red { border-color: #3a1a1a; }
+
+  .rules-header {
+    padding: 14px 20px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .rules-box.green .rules-header { background: var(--green-bg); color: #4caf82; }
+  .rules-box.red .rules-header { background: var(--red-bg); color: #ef5350; }
+
+  .rules-list {
+    list-style: none;
+  }
+
+  .rules-list li {
+    padding: 12px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray1);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.6;
+  }
+
+  .rules-box.green .rules-list li { border-color: #1e3a2a; }
+  .rules-box.red .rules-list li { border-color: #3a1a1a; }
+
+  .rules-list li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .rules-box.green .rules-list li::before { background: #2e7d52; }
+  .rules-box.red .rules-list li::before { background: #c62828; }
+
+  /* ANIMATION DEMO */
+  .anim-demo {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 32px;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .anim-demo-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gray2);
+    margin-bottom: 20px;
+  }
+
+  .anim-line {
+    font-size: clamp(18px, 3vw, 26px);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    opacity: 0;
+    transform: translateY(18px);
+    animation: slideUp 0.5s ease forwards;
+    line-height: 1.2;
+  }
+
+  .anim-line:nth-child(2) { animation-delay: 0.6s; }
+  .anim-line:nth-child(3) { animation-delay: 1.2s; }
+  .anim-line:nth-child(4) { animation-delay: 1.8s; }
+
+  @keyframes slideUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* TRANSITION TYPES */
+  .transition-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  @media (max-width: 500px) { .transition-grid { grid-template-columns: 1fr; } }
+
+  .transition-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
+  }
+
+  .transition-card.allowed { border-color: #1e3a2a; }
+  .transition-card.forbidden { border-color: #3a1a1a; opacity: 0.7; }
+
+  .tc-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 12px;
+  }
+
+  .allowed .tc-badge { background: #1e3a2a; color: #4caf82; }
+  .forbidden .tc-badge { background: #3a1a1a; color: #ef5350; }
+
+  .tc-title {
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .tc-desc {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray2);
+    line-height: 1.6;
+  }
+
+  /* DELIVERY BOX */
+  .delivery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 24px;
+  }
+
+  .delivery-item {
+    background: var(--bg2);
+    padding: 20px;
+  }
+
+  .di-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray2);
+    margin-bottom: 6px;
+  }
+
+  .di-value {
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--white);
+  }
+
+  /* FOOTER */
+  .brief-footer {
+    margin-top: 52px;
+    padding: 32px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    text-align: center;
+  }
+
+  .brief-footer p {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray2);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.8;
+  }
+
+  .highlight { color: var(--white); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-label">Documento interno</div>
+  <h1>Brief de Edición</h1>
+  <p class="header-sub">Videos Publicitarios — Guía de Estilo</p>
+  <div class="header-meta">
+    <div class="meta-item">Formato <span>Vertical 9:16</span></div>
+    <div class="meta-item">Duración <span>30 seg — 1 min</span></div>
+    <div class="meta-item">Idioma <span>Inglés</span></div>
+    <div class="meta-item">Mínimo diario <span>3 videos</span></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 01 OBJETIVO -->
+  <div class="section">
+    <div class="section-number">01</div>
+    <div class="section-title">Objetivo</div>
+    <p class="section-body">Cada video es un anuncio publicitario funcional. El objetivo es captar atención en los primeros 3 segundos, comunicar el mensaje con claridad y llevar al espectador a tomar acción. No es cine — es conversión.</p>
+  </div>
+
+  <!-- 02 ESTRUCTURA -->
+  <div class="section">
+    <div class="section-number">02</div>
+    <div class="section-title">Estructura del Video</div>
+    <p class="section-body">Cada video se divide en exactamente 2 partes. Seguir este orden siempre.</p>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-num">01</div>
+        <div class="card-title">Imágenes de apoyo</div>
+        <div class="card-body">Clips o imágenes que muestran el problema o contexto. Deben ser llamativos y conectar emocionalmente con el espectador desde el primer segundo.</div>
+      </div>
+      <div class="card">
+        <div class="card-num">02</div>
+        <div class="card-title">Texto animado sobre fondo</div>
+        <div class="card-body">Pantallas con texto grande comunicando el mensaje principal, beneficios o llamada a la acción. Fondo neutro oscuro o con overlay.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 TIPOGRAFÍA -->
+  <div class="section">
+    <div class="section-number">03</div>
+    <div class="section-title">Tipografía y Texto</div>
+    <p class="section-body">Una sola fuente. Todo en mayúsculas. Sin mezclas.</p>
+    <div class="rules-box green" style="margin-top:24px;">
+      <div class="rules-header">✓ Reglas de tipografía</div>
+      <ul class="rules-list">
+        <li>Fuente preferida: <strong style="color:#fff">Montserrat Bold o Black</strong></li>
+        <li>Se puede usar una fuente similar si es <strong style="color:#fff">gruesa, sans-serif y legible</strong> (ej: Anton, Bebas Neue, Impact). Nada decorativo.</li>
+        <li>Todo el texto siempre en <strong style="color:#fff">MAYÚSCULAS</strong></li>
+        <li>Color de texto: <strong style="color:#fff">solo blanco</strong></li>
+        <li>Tamaño grande — que se lea sin esfuerzo en celular</li>
+        <li>Sombra o glow suave para que resalte sobre cualquier fondo</li>
+        <li>Subtítulos en la parte inferior de la pantalla</li>
+      </ul>
+    </div>
+    <div class="rules-box red" style="margin-top:12px;">
+      <div class="rules-header">✗ Prohibido en tipografía</div>
+      <ul class="rules-list">
+        <li>Mezclar dos o más fuentes diferentes en el mismo video</li>
+        <li>Texto en colores (amarillo, naranja, verde, etc.)</li>
+        <li>Fuentes decorativas, cursivas, finas o difíciles de leer</li>
+        <li>Texto en minúsculas o mixed case</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 04 ANIMACIÓN DE TEXTO -->
+  <div class="section">
+    <div class="section-number">04</div>
+    <div class="section-title">Animación de Texto</div>
+    <p class="section-body">Las palabras o frases aparecen una debajo de la otra, de arriba hacia abajo. Simple, limpio, sin efectos complejos.</p>
+    <div class="anim-demo">
+      <div class="anim-demo-label">Vista previa — así debe verse</div>
+      <div class="anim-line">Reshaping</div>
+      <div class="anim-line">Your Daily</div>
+      <div class="anim-line">Life</div>
+    </div>
+    <div class="rules-box green" style="margin-top:16px;">
+      <div class="rules-header">✓ Animación permitida</div>
+      <ul class="rules-list">
+        <li>Aparición de texto de arriba hacia abajo, línea por línea</li>
+        <li>Fade in simple al entrar cada línea</li>
+        <li>Una sola animación de entrada — consistente en todo el video</li>
+      </ul>
+    </div>
+    <div class="rules-box red" style="margin-top:12px;">
+      <div class="rules-header">✗ Prohibido en animaciones</div>
+      <ul class="rules-list">
+        <li>Mezclar diferentes animaciones dentro del mismo video</li>
+        <li>Efectos de typing, glitch, rebote, rotación o zoom exagerado</li>
+        <li>Animaciones que distraigan del mensaje</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 05 FONDOS -->
+  <div class="section">
+    <div class="section-number">05</div>
+    <div class="section-title">Fondos</div>
+    <p class="section-body">El fondo base será proporcionado por el cliente. Úsalo siempre. No lo cambies ni lo reemplaces.</p>
+    <div class="rules-box green" style="margin-top:24px;">
+      <div class="rules-header">✓ Fondos permitidos</div>
+      <ul class="rules-list">
+        <li>El fondo que yo te entregué — <strong style="color:#fff">(recomendado)</strong></li>
+        <li>Overlay oscuro sutil encima si el texto no resalta suficiente</li>
+        <li>Consistente en todas las pantallas de texto del mismo video</li>
+      </ul>
+    </div>
+    <div class="rules-box red" style="margin-top:12px;">
+      <div class="rules-header">✗ Fondos prohibidos</div>
+      <ul class="rules-list">
+        <li>Cambiar o reemplazar el fondo del cliente por otro</li>
+        <li>Colores llamativos: naranja, azul brillante, verde, rojo, etc.</li>
+        <li>Degradados multicolor o estilo arcoíris</li>
+        <li>Fondos diferentes en cada pantalla del mismo video</li>
+        <li>Patrones o texturas que compitan con el texto</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 06 TRANSICIONES -->
+  <div class="section">
+    <div class="section-number">06</div>
+    <div class="section-title">Transiciones</div>
+    <p class="section-body">Solo 2 tipos permitidos. Máximo 1 tipo por video. No mezclar.</p>
+    <div class="transition-grid">
+      <div class="transition-card allowed">
+        <div class="tc-badge">✓ Permitida</div>
+        <div class="tc-title">Transición de luz</div>
+        <div class="tc-desc">Flash blanco o negro entre escenas. Rápida y limpia.</div>
+      </div>
+      <div class="transition-card allowed">
+        <div class="tc-badge">✓ Permitida</div>
+        <div class="tc-title">Paneo</div>
+        <div class="tc-desc">Deslizamiento suave hacia un lado. Sin exagerar la velocidad.</div>
+      </div>
+      <div class="transition-card forbidden">
+        <div class="tc-badge">✗ Prohibida</div>
+        <div class="tc-title">Barrido / Estrella / Espiral</div>
+        <div class="tc-desc">Cualquier efecto llamativo o elaborado. Nunca.</div>
+      </div>
+      <div class="transition-card forbidden">
+        <div class="tc-badge">✗ Prohibida</div>
+        <div class="tc-title">Zoom exagerado / Giro</div>
+        <div class="tc-desc">Efectos que distraen o se ven no profesionales.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 ENTREGA -->
+  <div class="section">
+    <div class="section-number">07</div>
+    <div class="section-title">Entrega</div>
+    <div class="delivery-grid">
+      <div class="delivery-item">
+        <div class="di-label">Videos por día</div>
+        <div class="di-value">Mínimo 3</div>
+      </div>
+      <div class="delivery-item">
+        <div class="di-label">Formato</div>
+        <div class="di-value">MP4</div>
+      </div>
+      <div class="delivery-item">
+        <div class="di-label">Duración</div>
+        <div class="di-value">30 seg — 1 min</div>
+      </div>
+      <div class="delivery-item">
+        <div class="di-label">Orientación</div>
+        <div class="di-value">Vertical o Feed</div>
+      </div>
+      <div class="delivery-item">
+        <div class="di-label">Vertical</div>
+        <div class="di-value">1080 × 1920</div>
+      </div>
+      <div class="delivery-item">
+        <div class="di-label">Feed (Facebook)</div>
+        <div class="di-value">1080 × 1080</div>
+      </div>
+      <div class="delivery-item">
+        <div class="di-label">Horario</div>
+        <div class="di-value">Primera hora</div>
+      </div>
+    </div>
+    <div class="rules-box red" style="margin-top:16px;">
+      <div class="rules-header">✗ Regla de duración — importante</div>
+      <ul class="rules-list">
+        <li>Si el video supera 1 minuto, <strong style="color:#fff">cortarlo</strong> — nunca entregar un video más largo</li>
+        <li>El mínimo es 30 segundos — si queda muy corto, ajustar el ritmo, no estirar con relleno</li>
+      </ul>
+    </div>
+    <div class="rules-box green" style="margin-top:12px;">
+      <div class="rules-header">✓ Protocolo de entrega</div>
+      <ul class="rules-list">
+        <li>Entregar los videos a primera hora del día acordado</li>
+        <li>Si hay retraso, avisar con anticipación — no desaparecer</li>
+        <li>Revisar el brief antes de empezar cada nuevo lote de videos</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="brief-footer">
+    <p>¿Dudas antes de empezar? <span class="highlight">Pregunta primero.</span><br>Una vez arrancado, seguimos el brief <span class="highlight">al pie de la letra.</span></p>
+  </div>
+
+</div>
+
+</body>
+</html>
