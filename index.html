@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Brief de Edición — Guía de Estilo para Videos Publicitarios">
+<meta name="og:title" content="Brief de Edición — Videos Publicitarios">
 <title>Brief de Edición — Videos Publicitarios</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -14,7 +16,7 @@
     --bg3: #1a1a1a;
     --border: #2a2a2a;
     --white: #ffffff;
-    --gray1: #888888;
+    --gray1: #999999;
     --gray2: #555555;
     --accent: #ffffff;
     --red: #e53935;
@@ -26,9 +28,17 @@
   body {
     background: var(--bg);
     color: var(--white);
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', -apple-system, sans-serif;
     min-height: 100vh;
     padding: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   /* HEADER */
@@ -240,6 +250,117 @@
   .rules-box.green .rules-list li::before { background: #2e7d52; }
   .rules-box.red .rules-list li::before { background: #c62828; }
 
+  /* VIDEO DEMO */
+  .video-container {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px;
+    margin-top: 24px;
+    text-align: center;
+  }
+
+  .video-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gray2);
+    margin-bottom: 16px;
+  }
+
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    aspect-ratio: 9 / 16;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000;
+  }
+
+  .video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* IMAGE SECTION */
+  .image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  @media (max-width: 500px) {
+    .image-gallery {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .image-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    position: relative;
+  }
+
+  .image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--bg3) 0%, var(--bg2) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--gray2);
+    text-align: center;
+    padding: 16px;
+    animation: fadeInScale 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .image-card:nth-child(2) .image-placeholder {
+    animation-delay: 0.1s;
+  }
+
+  .image-card:nth-child(3) .image-placeholder {
+    animation-delay: 0.2s;
+  }
+
+  .image-card:nth-child(4) .image-placeholder {
+    animation-delay: 0.3s;
+  }
+
+  .image-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray1);
+  }
+
   /* ANIMATION DEMO */
   .anim-demo {
     background: var(--bg2);
@@ -387,6 +508,64 @@
   }
 
   .highlight { color: var(--white); }
+
+  /* AI RECOMMENDATION BOX */
+  .ai-box {
+    background: var(--bg3);
+    border: 2px solid #4caf82;
+    border-radius: 4px;
+    padding: 20px;
+    margin-top: 24px;
+  }
+
+  .ai-box-title {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #4caf82;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ai-box-title::before {
+    content: '⚡';
+    display: inline-block;
+  }
+
+  .ai-box p {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray1);
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .ai-box p:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-tools {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .ai-tool {
+    background: var(--bg2);
+    border: 1px solid #1e3a2a;
+    border-radius: 3px;
+    padding: 8px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #4caf82;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
 </style>
 </head>
 <body>
@@ -431,6 +610,19 @@
     </div>
   </div>
 
+  <!-- 02.5 EJEMPLO DE VIDEO -->
+  <div class="section">
+    <div class="section-number">02.5</div>
+    <div class="section-title">Ejemplo — Video de Referencia</div>
+    <p class="section-body">Este es el estilo y ritmo que buscamos. Analiza la estructura, transiciones y cómo el texto aparece en pantalla.</p>
+    <div class="video-container">
+      <div class="video-label">Video de YouTube — formato vertical</div>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/qFAf1fBrvCk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="width: 100%; height: 100%;"></iframe>
+      </div>
+    </div>
+  </div>
+
   <!-- 03 TIPOGRAFÍA -->
   <div class="section">
     <div class="section-number">03</div>
@@ -455,6 +647,56 @@
         <li>Texto en colores (amarillo, naranja, verde, etc.)</li>
         <li>Fuentes decorativas, cursivas, finas o difíciles de leer</li>
         <li>Texto en minúsculas o mixed case</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 03.5 IMÁGENES DE APOYO -->
+  <div class="section">
+    <div class="section-number">03.5</div>
+    <div class="section-title">Imágenes de Apoyo</div>
+    <p class="section-body">Las imágenes son el corazón del video. Deben conectar emocionalmente, ser claras y llamar atención en los primeros 3 segundos.</p>
+    
+        <div class="image-label">Ejemplo</div>
+      </div>
+    </div>
+
+    <div class="rules-box green" style="margin-top:24px;">
+      <div class="rules-header">✓ Imágenes de calidad</div>
+      <ul class="rules-list">
+        <li>Resolución mínima: <strong style="color:#fff">1080 × 1920px</strong> (vertical)</li>
+        <li>Imágenes claras, bien iluminadas, sin ruido visual</li>
+        <li>Colores vibrantes pero coherentes con la marca</li>
+        <li>Que muestren la acción o el problema de forma directa</li>
+        <li>Evitar fondos complicados que compitan con el mensaje</li>
+      </ul>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-box-title">Usa IA para generar y animar imágenes</div>
+      <p><strong style="color:#4caf82">No gastes tiempo</strong> buscando imágenes stock o editándolas manualmente. Lo que más te tarde, <strong style="color:#4caf82">désalo a la IA</strong>.</p>
+      
+      <p><strong style="color:#4caf82">Para generar imágenes:</strong> Usa prompts detallados que describan exactamente lo que necesitas. Ejemplo: "Imagen vertical 1080x1920, persona usando producto, luz natural, fondo minimalista, estilo profesional pero accesible".</p>
+      
+      <p><strong style="color:#4caf82">Para animar:</strong> Muchas herramientas de IA pueden hacer zoom suave, parallax o movimiento de cámara sobre imágenes estáticas. Úsalas para darle vida a las imágenes sin complicarte.</p>
+
+      <div class="ai-tools">
+        <div class="ai-tool">Midjourney</div>
+        <div class="ai-tool">DALL-E 3</div>
+        <div class="ai-tool">Runway</div>
+        <div class="ai-tool">Pika</div>
+        <div class="ai-tool">Synthesia</div>
+        <div class="ai-tool">Adobe Firefly</div>
+      </div>
+    </div>
+
+    <div class="rules-box red" style="margin-top:12px;">
+      <div class="rules-header">✗ Imágenes prohibidas</div>
+      <ul class="rules-list">
+        <li>Imágenes borrosas, pixeladas o de baja resolución</li>
+        <li>Fondos que distraigan del mensaje principal</li>
+        <li>Imágenes desactualizadas o que no conecten con el público</li>
+        <li>Usar la misma imagen en varios videos sin variación</li>
       </ul>
     </div>
   </div>
@@ -496,7 +738,7 @@
     <div class="rules-box green" style="margin-top:24px;">
       <div class="rules-header">✓ Fondos permitidos</div>
       <ul class="rules-list">
-        <li>El fondo que Jorge te entregue — <strong style="color:#fff">(recomendado)</strong></li>
+        <li>El fondo que el cliente entregue — <strong style="color:#fff">ese y solo ese</strong></li>
         <li>Overlay oscuro sutil encima si el texto no resalta suficiente</li>
         <li>Consistente en todas las pantallas de texto del mismo video</li>
       </ul>
